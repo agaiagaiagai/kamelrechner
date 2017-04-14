@@ -1,0 +1,37 @@
+.female {
+
+  .box {
+
+    &.hairlength-box {
+      height: 175px;
+    }
+
+    &.boobsize-box {
+      height: 150px;
+
+      .radio-with-image.small {
+
+        label {
+
+          img {
+            margin-top: -5px;
+          }
+        }
+
+        &:hover {
+
+          label {
+
+            img {
+              margin-top: -15px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .button {
+    margin-top: 25px;
+  }
+}

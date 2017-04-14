@@ -1,0 +1,140 @@
+<kr-header text="Wie viele Kamele ist dein Freund wert?"></kr-header>
+<section class="main">
+    <div class="container">
+        <div class="row box age-box">
+            <div class="col-md-4">
+                <h3>Alter <span>{{ageSlider.value}}</span></h3>
+            </div>
+            <div class="col-md-8">
+                <rzslider rz-slider-model="ageSlider.value" rz-slider-options="ageSlider.options"></rzslider>
+            </div>
+        </div>
+        <div class="row box height-box">
+            <div class="col-md-4">
+                <h3>Größe(cm) <span>{{heightSlider.value}}</span></h3>
+            </div>
+            <div class="col-md-8">
+                <rzslider rz-slider-model="heightSlider.value" rz-slider-options="heightSlider.options"></rzslider>
+            </div>
+        </div>
+        <div class="row box haircolor-box">
+            <div class="col-md-4">
+                <h3>Haarfarbe</h3>
+            </div>
+            <div class="col-md-8">
+                <select name="haircolor" class="form-control">
+                    <option value="blonde">blond</option>
+                    <option value="brown">braun</option>
+                    <option value="black">schwarz</option>
+                    <option value="red">rot</option>
+                    <option value="grey">grau</option>
+                </select>
+            </div>
+        </div>
+        <div class="row box hairlength-box">
+            <div class="col-md-4">
+                <h3>Haarlänge</h3>
+            </div>
+            <div class="col-md-8">
+                <div class="radio-with-image small flat">
+                    <input type="radio" name="hair" id="long" value="long" checked>
+                    <label for="long">lang</label>
+                </div>
+                <div class="radio-with-image small flat">
+                    <input type="radio" name="hair" id="middle" value="middle">
+                    <label for="middle">mittel</label>
+                </div>
+                <div class="radio-with-image small flat">
+                    <input type="radio" name="hair" id="short" value="short">
+                    <label for="short">kurz</label>
+                </div>
+                <div class="radio-with-image small flat">
+                    <input type="radio" name="hair" id="bald" value="bald">
+                    <label for="bald">glatze</label>
+                </div>
+            </div>
+        </div>
+        <div class="row box eyecolor-box">
+            <div class="col-md-4">
+                <h3>Augenfarbe</h3>
+            </div>
+            <div class="col-md-8">
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="blue" checked>
+                    <span class="label-text">blau</span>
+                </label>
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="green">
+                    <span class="label-text">grün</span>
+                </label>
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="brown">
+                    <span class="label-text">braun</span>
+                </label>
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="gray">
+                    <span class="label-text">grau</span>
+                </label>
+            </div>
+        </div>
+        <div class="row box beard-box">
+            <div class="col-md-4">
+                <h3>Bart</h3>
+            </div>
+            <div class="col-md-8">
+                <div class="radio-with-image small">
+                    <input type="radio" name="beard" id="beardA" value="a" checked>
+                    <label for="beardA">
+                        <img src="/assets/img/male/beard-none.png" alt="beard a">
+                    </label>
+                </div>
+                <div class="radio-with-image small">
+                    <input type="radio" name="beard" id="beardB" value="b">
+                    <label for="beardB">
+                        <img src="/assets/img/male/beard-small.png" alt="beard b">
+                    </label>
+                </div>
+                <div class="radio-with-image small">
+                    <input type="radio" name="beard" id="beardC" value="c">
+                    <label for="beardC">
+                        <img src="/assets/img/male/beard-middle.png" alt="beard c">
+                    </label>
+                </div>
+                <div class="radio-with-image small">
+                    <input type="radio" name="beard" id="beardD" value="d">
+                    <label for="beardD">
+                        <img src="/assets/img/male/beard-full.png" alt="beard d">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row box bodytype-box">
+            <div class="col-md-4">
+                <h3>Oberkörper</h3>
+            </div>
+            <div class="col-md-8">
+                <div class="radio-with-image">
+                    <input type="radio" name="bodytype" id="bodyA" value="body-a" checked>
+                    <label for="bodyA">
+                        <img src="/assets/img/male/body-1.png" alt="body-a">
+                    </label>
+                </div>
+                <div class="radio-with-image">
+                    <input type="radio" name="bodytype" id="bodyB" value="body-b">
+                    <label for="bodyB">
+                        <img src="/assets/img/male/body-2.png" alt="body-b">
+                    </label>
+                </div>
+                <div class="radio-with-image">
+                    <input type="radio" name="bodytype" id="bodyC" value="body-c">
+                    <label for="bodyC">
+                        <img src="/assets/img/male/body-3.png" alt="body-c">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="button">BERECHNEN</button>
+        </div>
+    </div>
+</section>

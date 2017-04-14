@@ -1,0 +1,131 @@
+<kr-header text="Wie viele Kamele ist deine Freundin wert?"></kr-header>
+<section class="main">
+    <div class="container">
+        <div class="row box age-box">
+            <div class="col-md-4">
+                <h3>Alter <span>{{ageSlider.value}}</span></h3>
+            </div>
+            <div class="col-md-8">
+                <rzslider rz-slider-model="ageSlider.value" rz-slider-options="ageSlider.options"></rzslider>
+            </div>
+        </div>
+        <div class="row box height-box">
+            <div class="col-md-4">
+                <h3>Größe(cm) <span>{{heightSlider.value}}</span></h3>
+            </div>
+            <div class="col-md-8">
+                <rzslider rz-slider-model="heightSlider.value" rz-slider-options="heightSlider.options"></rzslider>
+            </div>
+        </div>
+        <div class="row box haircolor-box">
+            <div class="col-md-4">
+                <h3>Haarfarbe</h3>
+            </div>
+            <div class="col-md-8">
+                <select name="haircolor" class="form-control" ng-model="hairColor" ng-init="hairColor = 'blonde'">
+                    <option value="blonde">blonde</option>
+                    <option value="brown">braun</option>
+                    <option value="black">schwarz</option>
+                    <option value="red">rot</option>
+                    <option value="grey">grau</option>
+                </select>
+            </div>
+        </div>
+        <div class="row box hairlength-box">
+            <div class="col-md-4">
+                <h3>Haarlänge</h3>
+            </div>
+            <div class="col-md-8" ng-init="hair = 'long'">
+                <div class="radio-with-image">
+                    <input type="radio" name="hair" id="long" value="long" ng-model="hair">
+                    <label for="long">
+                        <img src="/assets/img/female/woman-long-hair.png" alt="long hair">
+                    </label>
+                </div>
+                <div class="radio-with-image">
+                    <input type="radio" name="hair" id="middle" value="middle" ng-model="hair">
+                    <label for="middle">
+                        <img src="/assets/img/female/woman-middle-hair.png" alt="middle hair">
+                    </label>
+                </div>
+                <div class="radio-with-image">
+                    <input type="radio" name="hair" id="short" value="short" ng-model="hair">
+                    <label for="short">
+                        <img src="/assets/img/female/woman-short-hair.png" alt="short hair">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row box eyecolor-box" ng-init="eyeColor = 'blue'">
+            <div class="col-md-4">
+                <h3>Augenfarbe</h3>
+            </div>
+            <div class="col-md-8">
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="blue" ng-model="eyeColor" ng-selected>
+                    <span class="label-text">blau</span>
+                </label>
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="green" ng-model="eyeColor">
+                    <span class="label-text">grün</span>
+                </label>
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="brown" ng-model="eyeColor">
+                    <span class="label-text">braun</span>
+                </label>
+                <label class="inline-radio">
+                    <input type="radio" name="eyecolor" value="gray" ng-model="eyeColor">
+                    <span class="label-text">grau</span>
+                </label>
+            </div>
+        </div>
+        <div class="row box boobsize-box" ng-init="boobs = 'a'">
+            <div class="col-md-4">
+                <h3>Körbchengröße</h3>
+            </div>
+            <div class="col-md-8">
+                <div class="radio-with-image small">
+                    <input type="radio" name="boobs" id="boobsA" value="a" ng-model="boobs" ng-selected>
+                    <label for="boobsA">
+                        <img src="/assets/img/female/boobs-a.png" alt="boobs a">
+                    </label>
+                </div>
+                <div class="radio-with-image small">
+                    <input type="radio" name="boobs" id="boobsB" value="b" ng-model="boobs">
+                    <label for="boobsB">
+                        <img src="/assets/img/female/boobs-b.png" alt="boobs b">
+                    </label>
+                </div>
+                <div class="radio-with-image small">
+                    <input type="radio" name="boobs" id="boobsC" value="c" ng-model="boobs">
+                    <label for="boobsC">
+                        <img src="/assets/img/female/boobs-c.png" alt="boobs c">
+                    </label>
+                </div>
+                <div class="radio-with-image small">
+                    <input type="radio" name="boobs" id="boobsD" value="d" ng-model="boobs">
+                    <label for="boobsD">
+                        <img src="/assets/img/female/boobs-d.png" alt="boobs d">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row box bodytype-box">
+            <div class="col-md-4">
+                <h3>Figur</h3>
+            </div>
+            <div class="col-md-8">
+                <select name="bodytype" class="form-control" ng-model="bodyType" ng-init="bodyType = 'thin'">
+                    <option value="thin">mager</option>
+                    <option value="sporty">sportlich</option>
+                    <option value="normal">normal</option>
+                    <option value="chubby">mollig</option>
+                    <option value="fat">dick</option>
+                </select>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="button" ng-click="CalculateWorth()">BERECHNEN</button>
+        </div>
+    </div>
+</section>

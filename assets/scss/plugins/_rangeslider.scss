@@ -1,0 +1,29 @@
+.rzslider {
+  margin-top: 32px;
+
+  .rz-bar {
+    height: 10px;
+    background: $border-color;
+    border-radius: 5px;
+    box-shadow: inset 1px 2px 4px #aaa;
+  }
+
+  .rz-selection {
+    background-color: $orange;
+  }
+
+  .rz-bar-wrapper {
+    height: 36px;
+    margin-top: -18px;
+  }
+
+  .rz-pointer {
+    background-color: $white;
+    border: 1px solid $border-color;
+    box-shadow: 0px 0px 3px #aaa;
+
+    &:after {
+      width: 0;
+    }
+  }
+}

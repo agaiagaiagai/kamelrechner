@@ -1,0 +1,44 @@
+.home {
+
+  .main {
+
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .select {
+      border: 1px solid $border-color;
+      color: $orange;
+
+      .image {
+        border-bottom: 1px solid $border-color;
+        text-align: center;
+
+        img {
+          width: 200px;
+        }
+      }
+
+      h2 {
+        font-size: 30px;
+        font-weight: 400;
+        text-align: center;
+        padding: 30px;
+      }
+
+      &:hover {
+        color: $dark-orange;
+        cursor: pointer;
+
+        .image {
+          @include linearGradient($white, #FEECEC);
+        }
+
+        h2 {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
