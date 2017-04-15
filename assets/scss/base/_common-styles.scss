@@ -112,7 +112,7 @@ img {
       cursor: pointer;
 
       img {
-        width: 110px;
+        width: 55%;
         margin-top: 10px;
         transition: all .3s ease;
       }
@@ -121,8 +121,8 @@ img {
     &:hover {
 
       img {
-        width: 130px;
-        margin-top: 5px;
+        width: 60%;
+        margin-top: 10px;
       }
     }
   }

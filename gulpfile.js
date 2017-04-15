@@ -50,13 +50,12 @@ gulp.task('js', function () {
         'bower_components/angularjs-slider/dist/rzslider.js',
         'app/app.config.js',
         'app/app.states.js',
-        'app/app.services.js',
-        'app/app.directives.js',
         'app/directives/*.js',
         'app/services/*.js',
         'app/controllers/home.controller.js',
         'app/controllers/male.controller.js',
-        'app/controllers/female.controller.js'
+        'app/controllers/female.controller.js',
+        'app/controllers/result.controller.js'
     ])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('assets/js/'))

@@ -1,0 +1,169 @@
+[
+   {
+      "de":{
+         "homePage":{
+            "headerText":"Kamelrechner",
+            "paragraph":"Hier kannst du den Wert deiner Freundin, deines Freundes oder natürlich von dir selbst, in Kamelen berechnen. Hierzu benötigen wir aber erst ein paar Angaben zur Person.",
+            "femaleBox":"Wie viele Kamele ist deine Freundin wert?",
+            "maleBox":"Wie viele Kamele ist dein Freund wert?"
+         },
+         "labels":{
+            "age":"Alter",
+            "height":"Größe (cm)",
+            "hairLength":{
+               "main":"Haarlänge",
+               "long":"lang",
+               "middle":"mittel",
+               "short":"kurz",
+               "bald":"glatze"
+            },
+            "hairColor":{
+               "main":"Haarfarbe",
+               "blonde":"blond",
+               "brown":"braun",
+               "black":"schwarz",
+               "red":"rot",
+               "gray":"grau"
+            },
+            "eyeColor":{
+               "main":"Augenfarbe",
+               "blue":"blau",
+               "green":"grün",
+               "brown":"braun",
+               "gray":"grau"
+            },
+            "boobSize":"Körbchengröße",
+            "beard":"Bart",
+            "bodyType":{
+               "mainMale":"Oberkörper",
+               "mainFemale":"Figur",
+               "thin":"mager",
+               "sporty":"sportlich",
+               "normal":"normal",
+               "chubby":"mollig",
+               "fat":"dick"
+            },
+            "calculate":"Berechnen",
+            "overscore":{
+               "male":"Dein Freund",
+               "female":"Deine Freundin ist"
+            },
+            "underscore":"Kamele wert",
+            "facebook":"Auf Facebook posten",
+            "twitter":"Auf Twitter posten",
+            "whatsapp":"Mit WhatsApp teilen",
+            "recalculate":"Nochmal berechnen?"
+         }
+      },
+      "en":{
+         "homePage":{
+            "headerText":"Camel Calculator",
+            "paragraph":"Here you can calculate how many camels your girlfriend or boyfriend is worth. But first we need some information about the person.",
+            "femaleBox":"How many camels for your girlfriend?",
+            "maleBox":"How many camels for your boyfriend?"
+         },
+         "labels":{
+            "age":"Age",
+            "height":"Height (cm)",
+            "hairLength":{
+               "main":"Hairlength",
+               "long":"long",
+               "middle":"middle",
+               "short":"short",
+               "bald":"bald"
+            },
+            "hairColor":{
+               "main":"Haircolor",
+               "blonde":"blonde",
+               "brown":"brown",
+               "black":"black",
+               "red":"red",
+               "gray":"gray"
+            },
+            "eyeColor":{
+               "main":"Eyecolor",
+               "blue":"blue",
+               "green":"green",
+               "brown":"brown",
+               "gray":"gray"
+            },
+            "boobSize":"Boob size",
+            "beard":"Beard",
+            "bodyType":{
+               "mainMale":"Body",
+               "mainFemale":"Figure",
+               "thin":"thin",
+               "sporty":"sporty",
+               "normal":"normal",
+               "chubby":"chubby",
+               "fat":"fat"
+            },
+            "calculate":"Calculate",
+            "overscore":{
+               "male":"Your boyfriend is worth",
+               "female":"Deine Freundin ist"
+            },
+            "underscore":"camels",
+            "facebook":"Post on facebook",
+            "twitter":"Post on twitter",
+            "whatsapp":"Send with WhatsApp",
+            "recalculate":"Calculate again?"
+         }
+      },
+      "es":{
+         "homePage":{
+            "headerText":"Calculadora de camellos",
+            "paragraph":"Aquí puedes calcular el valor en camellos de tu pareja. Pero primero necesitamos algo de informacion sobre esa persona.",
+            "femaleBox":"¿Cuántos camellos valdría tu novia?",
+            "maleBox":"¿Cuántos camellos valdría tu novio?"
+         },
+         "labels":{
+            "age":"Edad",
+            "height":"Altura (cm)",
+            "hairLength":{
+               "main":"Longitud del pelo",
+               "long":"largo",
+               "middle":"medio",
+               "short":"corto",
+               "bald":"sin pelo"
+            },
+            "hairColor":{
+               "main":"Color del pelo",
+               "blonde":"rubio",
+               "brown":"marrón",
+               "black":"negro",
+               "red":"rojo",
+               "gray":"gris"
+            },
+            "eyeColor":{
+               "main":"Color de ojos",
+               "blue":"azul",
+               "green":"verde",
+               "brown":"marrón",
+               "gray":"gris"
+            },
+            "boobSize":"Tamaño de los pechos",
+            "beard":"Barba",
+            "bodyType":{
+               "mainMale":"Cuerpo",
+               "mainFemale":"Figura",
+               "thin":"flaca",
+               "sporty":"deportista",
+               "normal":"normal",
+               "chubby":"regordita",
+               "fat":"gorda"
+            },
+            "calculate":"Calcular",
+            "overscore":{
+               "male":"Tu novio estaría valorada en",
+               "female":"Tu novia estaría valorada en"
+            },
+            "underscore":"camellos.",
+            "facebook":"Publicar en Facebook",
+            "twitter":"Publicar en Twitter",
+            "whatsapp":"Publicar en WhatsApp",
+            "recalculate":"¿Calcular otra vez?"
+         }
+      }
+   }
+]

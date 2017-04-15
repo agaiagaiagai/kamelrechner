@@ -1,28 +1,24 @@
-<kr-header text="Kamelrechner"></kr-header>
+<kr-header text="{{homePage.headerText}}"></kr-header>
 <section class="main">
     <div class="container">
-        <p>Hier kannst du den Wert deiner Freundin, deines Freundes oder natürlich von dir selbst, in Kamelen berechnen. Hierzu benötigen wir aber erst ein paar Angaben zur Person.</p>
+        <p>{{homePage.paragraph}}</p>
 
         <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <a href="/female">
-                    <div class="select">
-                        <div class="image">
-                            <img src="/assets/img/select-woman.png" alt="Select woman">
-                        </div>
-                        <h2>Wie viele Kamele ist deine Freundin wert?</h2>
+            <div class="col-xs-6 select-box">
+                <div class="select" ng-click="SelectFemale()">
+                    <div class="image">
+                        <img src="/assets/img/select-woman.png" alt="Select woman">
                     </div>
-                </a>
+                    <h2>{{homePage.femaleBox}}</h2>
+                </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-                <a href="/male">
-                    <div class="select">
-                        <div class="image">
-                            <img src="/assets/img/select-man.png" alt="Select man">
-                        </div>
-                        <h2>Wie viele Kamele ist dein Freund wert?</h2>
+            <div class="col-xs-6 select-box">
+                <div class="select" ng-click="SelectMale()">
+                    <div class="image">
+                        <img src="/assets/img/select-man.png" alt="Select man">
                     </div>
-                </a>
+                    <h2>{{homePage.maleBox}}</h2>
+                </div>
             </div>
         </div>
 

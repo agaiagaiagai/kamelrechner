@@ -4,11 +4,11 @@
     angular.module('kamelrechner')
         .directive('routeCssClassnames', function ($rootScope, $route) {
             return {
-                restrict: 'A',
+                restrict: "A",
                 scope: {},
                 link: function (scope, element, attr, ctrl) {
 
-                    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                    $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
                         var fromClassnames = angular.isDefined(fromState.data) && angular.isDefined(fromState.data.cssClassnames) ? fromState.data.cssClassnames : null;
                         var toClassnames = angular.isDefined(toState.data) && angular.isDefined(toState.data.cssClassnames) ? toState.data.cssClassnames : null;
 
@@ -28,24 +28,18 @@
                 }
             }
         })
-        .directive('updateTitle', ['$rootScope', '$timeout',
-            function ($rootScope, $timeout) {
+        .directive('updateTitle', ["$rootScope", "$timeout", "$localStorage",
+            function ($rootScope, $timeout, $localStorage) {
                 return {
                     link: function (scope, element) {
                         var listener = function (event, toState) {
 
-                            var title = 'Kamelrechner';
-
-                            if (toState.data && toState.data.pageTitle) {
-                                title = toState.data.pageTitle;
-                            }
-
                             $timeout(function () {
-                                element.text("Telescope - " + title);
+                                element.text($localStorage.content.homePage.headerText);
                             }, 0, false);
                         };
 
-                        $rootScope.$on('$stateChangeSuccess', listener);
+                        $rootScope.$on("$stateChangeSuccess", listener);
                     }
                 };
             }

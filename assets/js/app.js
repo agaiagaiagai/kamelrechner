@@ -63687,42 +63687,51 @@ angular.module('kamelrechner')
 
         ////Error page show for unknown URL
         $urlRouterProvider.otherwise('/404');
+        $urlRouterProvider.when('/', '/de/home');
+        $urlRouterProvider.when('/de', '/de/home');
+        $urlRouterProvider.when('/en', '/en/home');
+        $urlRouterProvider.when('/es', '/en/home');
 
         //ROUTES
         $stateProvider
         .state('home', {
-            url: '/',
+            url: '/{language}/home',
             templateUrl: 'app/views/home.view.html',
             controller: 'HomeController',
             data: {
-                cssClassnames: 'home',
-                pageTitle: "Home"
+                cssClassnames: 'home'
             }
         })
         .state('male', {
-            url: '/male',
+            url: '/{language}/male',
             templateUrl: 'app/views/male.view.html',
             controller: 'MaleController',
             data: {
-                cssClassnames: 'male',
-                pageTitle: "Male"
+                cssClassnames: 'male'
             }
         })
         .state('female', {
-            url: '/female',
+            url: '/{language}/female',
             templateUrl: 'app/views/female.view.html',
             controller: 'FemaleController',
             data: {
-                cssClassnames: 'female',
-                pageTitle: "Female"
+                cssClassnames: 'female'
             }
+        })
+        .state('result', {
+            url: '/{language}/result',
+            templateUrl: 'app/views/result.view.html',
+            controller: 'ResultController',
+            data: {
+                cssClassnames: 'result'
+            },
+            reloadOnSearch: false
         })
         .state('404', {
             url: '/404',
             templateUrl: 'app/views/404.html',
             data: {
-                cssClassnames: 'error',
-                pageTitle: "Error Page"
+                cssClassnames: 'error'
             }
         });
 
@@ -63732,21 +63741,14 @@ angular.module('kamelrechner')
 (function () {
     'use strict';
 
-    angular.module('kamelrechner');
-
-})();
-
-(function () {
-    'use strict';
-
     angular.module('kamelrechner')
         .directive('routeCssClassnames', function ($rootScope, $route) {
             return {
-                restrict: 'A',
+                restrict: "A",
                 scope: {},
                 link: function (scope, element, attr, ctrl) {
 
-                    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                    $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
                         var fromClassnames = angular.isDefined(fromState.data) && angular.isDefined(fromState.data.cssClassnames) ? fromState.data.cssClassnames : null;
                         var toClassnames = angular.isDefined(toState.data) && angular.isDefined(toState.data.cssClassnames) ? toState.data.cssClassnames : null;
 
@@ -63766,24 +63768,18 @@ angular.module('kamelrechner')
                 }
             }
         })
-        .directive('updateTitle', ['$rootScope', '$timeout',
-            function ($rootScope, $timeout) {
+        .directive('updateTitle', ["$rootScope", "$timeout", "$localStorage",
+            function ($rootScope, $timeout, $localStorage) {
                 return {
                     link: function (scope, element) {
                         var listener = function (event, toState) {
 
-                            var title = 'Kamelrechner';
-
-                            if (toState.data && toState.data.pageTitle) {
-                                title = toState.data.pageTitle;
-                            }
-
                             $timeout(function () {
-                                element.text("Telescope - " + title);
+                                element.text($localStorage.content.homePage.headerText);
                             }, 0, false);
                         };
 
-                        $rootScope.$on('$stateChangeSuccess', listener);
+                        $rootScope.$on("$stateChangeSuccess", listener);
                     }
                 };
             }
@@ -63794,13 +63790,22 @@ angular.module('kamelrechner')
     'use strict';
 
     angular.module('kamelrechner')
-        .directive('krHeader', function () {
+        .directive('krHeader', function ($localStorage, $state, LanguageService) {
             return {
                 restrict: 'E',
                 templateUrl: '/app/views/header.view.html',
+                scope: {
+                    text: '@text'
+                },
                 replace: true,
-                link: function (scope, el, attrs) {
-                    scope.text = attrs.text;
+                link: function(scope) {
+
+                    var currentPage = $state.current.name;
+
+                    scope.activateLanguage = function(lang) {
+                        $state.go(currentPage, {language: lang});
+                    };
+
                 }
             }
         })
@@ -63809,61 +63814,15 @@ angular.module('kamelrechner')
 (function () {
     'use strict';
 
-    angular.module('kamelrechner').controller('HomeController', ["$scope", "$localStorage", HomeController]);
+    angular.module('kamelrechner').service('CalculatorService', [CalculatorService]);
 
-    function HomeController($scope, $localStorage) {
+    function CalculatorService() {
 
-    }
-})();
+        var score = 0;
 
-(function () {
-    'use strict';
+        this.score = 0;
 
-    angular.module('kamelrechner').controller('MaleController', ["$scope", "$localStorage", MaleController]);
-
-    function MaleController($scope, $localStorage) {
-
-        $scope.ageSlider = {
-            value: 22,
-            options: {
-                floor: 14,
-                ceil: 70,
-                step: 1,
-                hidePointerLabels: true,
-                hideLimitLabels: true,
-                showSelectionBar: true
-            }
-        };
-
-        $scope.heightSlider = {
-            value: 176,
-            options: {
-                floor: 140,
-                ceil: 220,
-                step: 1,
-                hidePointerLabels: true,
-                hideLimitLabels: true,
-                showSelectionBar: true
-            }
-        };
-
-    }
-})();
-
-(function () {
-    'use strict';
-
-    angular.module('kamelrechner').controller('FemaleController', ["$scope", "$localStorage", FemaleController]);
-
-    function FemaleController($scope, $localStorage) {
-
-        $scope.hair = 'long';
-        $scope.hairColor = 'blonde';
-        $scope.eyeColor = 'blue';
-        $scope.boobs = 'a';
-        $scope.bodyType = 'thin';
-
-        $scope.ageSlider = {
+        this.ageSlider = {
             value: 18,
             options: {
                 floor: 14,
@@ -63874,8 +63833,7 @@ angular.module('kamelrechner')
                 showSelectionBar: true
             }
         };
-
-        $scope.heightSlider = {
+        this.heightSlider = {
             value: 168,
             options: {
                 floor: 140,
@@ -63887,26 +63845,43 @@ angular.module('kamelrechner')
             }
         };
 
+        this.CalculateScore = function(person) {
+
+            SetScore(person.gender);
+
+            SetAgeScore(person.gender, person.age);
+            SetHeightScore(person.gender, person.height);
+            SetHairLengthScore(person.gender, person.hairLength);
+            SetHairColorScore(person.gender, person.hairColor);
+            SetEyeColorScore(person.gender, person.eyeColor);
+            SetBodyTypeScore(person.gender, person.bodyType);
+            SetAdditionalScore(person);
+
+            if(person.gender === 'female'){
+                SetBoobSizeScore(person.boobSize);
+            }
+            else {
+                SetBeardScore(person.beard);
+            }
+
+            this.score = score;
+        }
 
 
-        $scope.CalculateWorth = function() {
-
-            var score = 56;
-
-            var femaleObject = {
-                age: $scope.ageSlider.value,
-                height: $scope.heightSlider.value,
-                hair: $scope.hair,
-                hairColor: $scope.hairColor,
-                eyeColor: $scope.eyeColor,
-                boobs: $scope.boobs,
-                bodyType: $scope.bodyType
-            };
+        //Setting base score based on gender with all default values and min values for age and height
+        function SetScore(gender) {
+            if(gender === 'female') {
+                score = 56;
+            }
+            else {
+                score = 50;
+            }
+        };
 
 
-            //Calculating score based on parameters given
-
-            switch(femaleObject.age) {
+        //Functions for updating the score
+        function SetAgeScore(gender, age) {
+            switch(age) {
                 case 14:
                     score += 0;
                     break;
@@ -63916,108 +63891,286 @@ angular.module('kamelrechner')
                 case 16 || 17:
                     score += 4;
                     break;
-                case femaleObject.age >= 18 && femaleObject.age <= 22 && femaleObject.age:
+                case age >= 18 && age <= 22 && age:
                     score += 8;
                     break;
-                case femaleObject.age >= 23 && femaleObject.age <= 27 && femaleObject.age:
+                case age >= 23 && age <= 27 && age:
                     score += 6;
                     break;
-                case femaleObject.age >= 28 && femaleObject.age <= 30 && femaleObject.age:
+                case age >= 28 && age <= 30 && age:
                     score += 3;
                     break;
-                case femaleObject.age >= 31 && femaleObject.age <= 40 && femaleObject.age:
+                case age >= 31 && age <= 40 && age:
                     score -= 1;
                     break;
-                case femaleObject.age >= 41 && femaleObject.age <= 45 && femaleObject.age:
+                case age >= 41 && age <= 45 && age:
                     score -= 2;
                     break;
-                case femaleObject.age >= 46 && femaleObject.age <= 49 && femaleObject.age:
+                case age >= 46 && age <= 49 && age:
                     score -= 3;
                     break;
                 case 50:
-                    score -= 24;
+                    if(gender === 'female') {
+                        score -= 28;
+                    }
+                    else {
+                        score -= 3;
+                    }
                     break;
-                case femaleObject.age >= 51 && femaleObject.age:
-                    score -= 26;
+                case age >= 51 && age <= 59 && age:
+                    if(gender === 'female') {
+                        score -= 29;
+                    }
+                    else {
+                        score -= 4;
+                    }
+                    break;
+                case age >= 60 && age:
+                    if(gender === 'female') {
+                        score -= 29;
+                    }
+                    else {
+                        score -= 24;
+                    }
                     break;
             }
+            
+        }
+        function SetHeightScore(gender, height){
+            if(gender === 'female') {
+                switch(height) {
+                    case height >= 140 && height < 145 && height:
+                        score += 0;
+                        break;
+                    case height >= 145 && height < 150 && height:
+                        score += 1;
+                        break;
+                    case height >= 150 && height < 160 && height:
+                        score += 4;
+                        break;
+                    case height >= 160 && height < 165 && height:
+                        score += 7;
+                        break;
+                    case height >= 165 && height < 170 && height:
+                        score += 11;
+                        break;
+                    case height >= 170 && height <= 180 && height:
+                        score += 12;
+                        break;
+                    case height >= 181 && height <= 185 && height:
+                        score += 5;
+                        break;
+                    case height >= 186 && height <= 195 && height:
+                        score += 3;
+                        break;
+                    case height >= 196 && height <= 220 && height:
+                        score += 0;
+                        break;
+                }
+            }
+            else {
+                switch(height) {
+                    case height >= 140 && height < 145 && height:
+                        score += 0;
+                        break;
+                    case height >= 145 && height < 150 && height:
+                        score += 1;
+                        break;
+                    case height >= 150 && height < 165 && height:
+                        score += 4;
+                        break;
+                    case height >= 165 && height < 170 && height:
+                        score += 9;
+                        break;
+                    case height >= 170 && height < 175 && height:
+                        score += 10;
+                        break;
+                    case height >= 175 && height <= 180 && height:
+                        score += 12;
+                        break;
+                    case height >= 181 && height <= 185 && height:
+                        score += 8;
+                        break;
+                    case height >= 185 && height <= 195 && height:
+                        score += 6;
+                        break;
+                    case height >= 196 && height:
+                        score += 0;
+                        break;
+                }
+            }
+        }
+        function SetHairLengthScore(gender, length) {
 
-            switch(femaleObject.height) {
-                case femaleObject.height >= 140 && femaleObject.height < 145 && femaleObject.height:
-                    score += 0;
-                    break;
-                case femaleObject.height >= 145 && femaleObject.height < 150 && femaleObject.height:
-                    score += 1;
-                    break;
-                case femaleObject.height >= 150 && femaleObject.height < 155 && femaleObject.height:
-                    score += 3;
-                    break;
-                case femaleObject.height >= 155 && femaleObject.height < 165 && femaleObject.height:
-                    score += 6;
-                    break;
-                case femaleObject.height >= 165 && femaleObject.height <= 175 && femaleObject.height:
-                    score += 11;
-                    break;
-                case femaleObject.height >= 176 && femaleObject.height <= 180 && femaleObject.height:
+            if(gender === 'female') {
+                switch(length) {
+                    case 'long':
+                        score += 0;
+                        break;
+                    case 'middle':
+                        score -= 14;
+                        break;
+                    case 'short':
+                        score -= 18;
+                        break;
+                }
+            }
+            else {
+                switch(length) {
+                    case 'long':
+                        score += 0;
+                        break;
+                    case 'middle':
+                        score += 18;
+                        break;
+                    case 'short':
+                        score += 8;
+                        break;
+                    case 'bald':
+                        score += 3;
+                        break;
+                }
+            }
+        }
+        function SetHairColorScore(gender, hairColor) {
+            if(gender === 'female') {
+                switch(hairColor) {
+                    case 'blonde':
+                        score += 0;
+                        break;
+                    case 'brown':
+                        score -= 12;
+                        break;
+                    case 'black':
+                        score -= 18;
+                        break;
+                    case 'red':
+                        score -= 16;
+                        break;
+                    case 'gray':
+                        score -= 20;
+                        break;
+                }
+            }
+            else {
+                switch(hairColor) {
+                    case 'blonde':
+                        score += 0;
+                        break;
+                    case 'brown':
+                        score -= 2;
+                        break;
+                    case 'black':
+                        score -= 4;
+                        break;
+                    case 'red':
+                        score -= 10;
+                        break;
+                    case 'gray':
+                        score -= 4;
+                        break;
+                }
+            }
+        }
+        function SetEyeColorScore(gender, eyeColor) {
+            if(gender === 'female') {
+                switch(eyeColor) {
+                    case 'blue':
+                        score += 0;
+                        break;
+                    case 'green':
+                        score -= 12;
+                        break;
+                    case 'brown':
+                        score -= 16;
+                        break;
+                    case 'gray':
+                        score -= 14;
+                        break;
+                }
+            }
+            else {
+                switch(eyeColor) {
+                    case 'blue':
+                        score += 0;
+                        break;
+                    case 'green':
+                        score -= 2;
+                        break;
+                    case 'brown':
+                        score -= 6;
+                        break;
+                    case 'gray':
+                        score -= 4;
+                        break;
+                }
+            }
+        }
+        function SetBodyTypeScore(gender, bodyType) {
+            if(gender === 'female') {
+                switch(bodyType) {
+                    case 'thin':
+                        score += 0;
+                        break;
+                    case 'sporty':
+                        score += 8;
+                        break;
+                    case 'normal':
+                        score += 6;
+                        break;
+                    case 'chubby':
+                        score += 0;
+                        break;
+                    case 'fat':
+                        score -= 4;
+                        break;
+                }
+            }
+            else {
+                switch(bodyType) {
+                    case 'normal':
+                        score += 0;
+                        break;
+                    case 'thin':
+                        score -= 3;
+                        break;
+                    case 'fat':
+                        score -= 7;
+                        break;
+                }
+            }
+        }
+        function SetAdditionalScore(person) {
+            if (person.gender === 'female') {
+
+                //Hair and eyes additional score
+                if (person.hairLength !== 'long' && person.hairColor !== 'blonde' && person.eyeColor !== 'blue') {
+                    score += 20;
+                }
+                else if (person.hairLength !== 'long' && person.hairColor !== 'blonde') {
                     score += 10;
-                    break;
-                case femaleObject.height >= 181 && femaleObject.height <= 185 && femaleObject.height:
-                    score += 6;
-                    break;
-                case femaleObject.height >= 186 && femaleObject.height <= 195 && femaleObject.height:
-                    score += 3;
-                    break;
-                case femaleObject.height >= 196 && femaleObject.height <= 220 && femaleObject.height:
-                    score += 0;
-                    break;
+                }
+                else if (person.hairLength !== 'long' && person.eyeColor !== 'blue'){
+                    score += 10;
+                }
+                else if (person.hairColor !== 'blonde' && person.eyeColor !== 'blue') {
+                    score += 10;
+                }
             }
-
-            switch(femaleObject.hair) {
-                case 'long':
-                    score += 0;
-                    break;
-                case 'middle':
-                    score -= 14;
-                    break;
-                case 'short':
-                    score -= 18;
-                    break;
+            else {
+                if (person.hairLength === 'middle' && person.hairColor !== 'blonde') {
+                    score -= 10;
+                }
+                else if (person.hairLength === 'middle' && person.eyeColor !== 'blue'){
+                    score -= 10;
+                }
             }
+        }
 
-            switch(femaleObject.hairColor) {
-                case 'blonde':
-                    score += 0;
-                    break;
-                case 'brown':
-                    score -= 12;
-                    break;
-                case 'black':
-                    score -= 18;
-                    break;
-                case 'red':
-                    score -= 16;
-                    break;
-                case 'gray':
-                    score -= 20;
-                    break;
-            }
 
-            switch(femaleObject.eyeColor) {
-                case 'blue':
-                    score += 0;
-                    break;
-                case 'green':
-                    score -= 12;
-                    break;
-                case 'brown':
-                    score -= 16;
-                    break;
-                case 'gray':
-                    score -= 14;
-                    break;
-            }
-
-            switch(femaleObject.boobs) {
+        //Female calculator only
+        function SetBoobSizeScore(boobSize) {
+            switch(boobSize) {
                 case 'a':
                     score += 0;
                     break;
@@ -64031,43 +64184,230 @@ angular.module('kamelrechner')
                     score += 8;
                     break;
             }
+        }
 
-            switch(femaleObject.bodyType) {
-                case 'thin':
+        //Male calculator only
+        function SetBeardScore(beard) {
+            switch(beard) {
+                case 'a':
                     score += 0;
                     break;
-                case 'sporty':
-                    score += 8;
+                case 'b':
+                    score -= 5;
                     break;
-                case 'normal':
-                    score += 6;
+                case 'c':
+                    score += 4;
                     break;
-                case 'chubby':
-                    score += 0;
-                    break;
-                case 'fat':
-                    score -= 4;
+                case 'd':
+                    score += 2;
                     break;
             }
+        }
+
+    }
+
+})();
+(function () {
+    'use strict';
+
+    angular.module('kamelrechner').service('LanguageService', ["$q", "$http", "$localStorage", "$stateParams", LanguageService]);
+
+    function LanguageService($q, $http, $localStorage, $stateParams) {
+
+        var service = {
+            language: $stateParams.language,
+            content: {}
+        }
+
+        var appContent = {};
+
+        service.SetLanguage = function() {
+            $localStorage.language = $stateParams.language;
+
+            var def = $q.defer();
+
+            $http.get('/data/data.json').success(function (data) {
+                service.content = data[0][$stateParams.language];
+                def.resolve(data);
+            }).error(function () {
+                def.reject("Failed to get data from JSON file");
+            });
+            return def.promise;
+        };
+
+        return service;
+    }
 
 
-            //If two or three params rom hair, hairColor and eyeColor are changed, adding value to score
 
-            if (femaleObject.hair !== 'long' && femaleObject.hairColor !== 'blonde' && femaleObject.eyeColor !== 'blue') {
-                score += 20;
-            }
-            else if (femaleObject.hair !== 'long' && femaleObject.hairColor !== 'blonde') {
-                score += 10;
-            }
-            else if (femaleObject.hair !== 'long' && femaleObject.eyeColor !== 'blue'){
-                score += 10;
-            }
-            else if (femaleObject.hairColor !== 'blonde' && femaleObject.eyeColor !== 'blue') {
-                score += 10;
-            }
+})();
+(function () {
+    'use strict';
 
-            console.log(femaleObject);
-            console.log(score);
+    angular.module('kamelrechner').controller('HomeController', ["$scope", "$localStorage", "$state", "LanguageService", HomeController]);
+
+    function HomeController($scope, $localStorage, $state, LanguageService) {
+
+        $scope.homePage = '';
+
+        LanguageService.SetLanguage().then(function (data) {
+            $localStorage.content = LanguageService.content;
+            $scope.homePage = $localStorage.content.homePage;
+        });
+
+        $scope.SelectFemale = function() {
+            $state.go('female', {language: $localStorage.language});
+        }
+
+        $scope.SelectMale = function() {
+            $state.go('male', {language: $localStorage.language});
+        }
+
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('kamelrechner').controller('MaleController', ["$scope", "$rootScope", "$localStorage", "$state", "CalculatorService", "LanguageService", MaleController]);
+
+    function MaleController($scope, $rootScope,$localStorage, $state, CalculatorService, LanguageService) {
+
+        $localStorage.gender = 'male';
+
+        $scope.labels = '';
+        $scope.headerText = '';
+
+        LanguageService.SetLanguage().then(function (data) {
+            $localStorage.content = LanguageService.content;
+            $scope.labels = $localStorage.content.labels;
+            $scope.headerText = $localStorage.content.homePage.maleBox;
+        });
+
+        $scope.ageSlider = CalculatorService.ageSlider;
+        $scope.heightSlider = CalculatorService.heightSlider;
+        $scope.hairLength = 'long';
+        $scope.hairColor = 'blonde';
+        $scope.eyeColor = 'blue';
+        $scope.beard = 'a';
+        $scope.bodyType = 'normal';
+
+
+        $scope.CalculateScore = function() {
+
+            var male = {
+                gender: $localStorage.gender,
+                age: $scope.ageSlider.value,
+                height: $scope.heightSlider.value,
+                hairLength: $scope.hairLength,
+                hairColor: $scope.hairColor,
+                eyeColor: $scope.eyeColor,
+                beard: $scope.beard,
+                bodyType: $scope.bodyType
+            };
+
+            CalculatorService.CalculateScore(male);
+
+            $state.go('result', {language: $localStorage.language});
+
+        }
+
+        $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+            $localStorage.previousState = from;
+        });
+
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('kamelrechner').controller('FemaleController', ["$scope", "$rootScope", "$localStorage", "$state", "CalculatorService", "LanguageService", FemaleController]);
+
+    function FemaleController($scope, $rootScope, $localStorage, $state, CalculatorService, LanguageService) {
+
+        $localStorage.gender = 'female';
+
+        $scope.labels = '';
+        $scope.headerText = '';
+
+        LanguageService.SetLanguage().then(function (data) {
+            $localStorage.content = LanguageService.content;
+            $scope.labels = $localStorage.content.labels;
+            $scope.headerText = $localStorage.content.homePage.femaleBox;
+        });
+
+        $scope.ageSlider = CalculatorService.ageSlider;
+        $scope.heightSlider = CalculatorService.heightSlider;
+        $scope.hairLength = 'long';
+        $scope.hairColor = 'blonde';
+        $scope.eyeColor = 'blue';
+        $scope.boobSize = 'a';
+        $scope.bodyType = 'thin';
+
+
+        $scope.CalculateScore = function() {
+
+            var female = {
+                gender: $localStorage.gender,
+                age: $scope.ageSlider.value,
+                height: $scope.heightSlider.value,
+                hairLength: $scope.hairLength,
+                hairColor: $scope.hairColor,
+                eyeColor: $scope.eyeColor,
+                boobSize: $scope.boobSize,
+                bodyType: $scope.bodyType
+            };
+
+            CalculatorService.CalculateScore(female);
+
+            $state.go('result', {language: $localStorage.language});
+
+        }
+
+        $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+            $localStorage.previousState = from;
+        });
+
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('kamelrechner').controller('ResultController', ["$scope", "$localStorage", "$state", "CalculatorService", ResultController]);
+
+    function ResultController($scope, $localStorage, $state, CalculatorService) {
+
+        var labels = $localStorage.content.labels;
+
+        console.log($localStorage.previousState);
+
+        $scope.headerText = '';
+        $scope.overscore = '';
+        $scope.underscore = labels.underscore;
+        $scope.facebook = labels.facebook;
+        $scope.twitter = labels.twitter;
+        $scope.whatsapp = labels.whatsapp;
+        $scope.recalculate = labels.recalculate;
+
+        if($localStorage.previousState.name === 'female'){
+            $scope.headerText = $localStorage.content.homePage.femaleBox;
+            $scope.overscore =  labels.overscore.female;
+        }
+        else {
+            $scope.headerText = $localStorage.content.homePage.maleBox;
+            $scope.overscore =  labels.overscore.male;
+        }
+
+        $scope.result = CalculatorService.score;
+
+        if($scope.result === 0) {
+            $state.go($localStorage.gender, {language: $localStorage.language});
+        }
+
+        $scope.NewGame = function() {
+            $state.go('home', {language: $localStorage.language});
         }
 
     }

@@ -1,0 +1,19 @@
+<kr-header text="{{headerText}}"></kr-header>
+<section class="main">
+    <div class="container">
+        <div class="result text-center">
+            <p>{{overscore}}</p>
+            <h1>{{result}}</h1>
+            <p>{{underscore}}</p>
+
+            <div class="share-box">
+                <button class="button facebook">{{facebook}}</button>
+                <button class="button twitter">{{twitter}}</button>
+                <button class="button whatsapp">{{whatsapp}}</button>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="button" ng-click="NewGame()">{{recalculate}}</button>
+        </div>
+    </div>
+</section>

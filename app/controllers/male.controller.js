@@ -1,33 +1,52 @@
 (function () {
     'use strict';
 
-    angular.module('kamelrechner').controller('MaleController', ["$scope", "$localStorage", MaleController]);
+    angular.module('kamelrechner').controller('MaleController', ["$scope", "$rootScope", "$localStorage", "$state", "CalculatorService", "LanguageService", MaleController]);
 
-    function MaleController($scope, $localStorage) {
+    function MaleController($scope, $rootScope,$localStorage, $state, CalculatorService, LanguageService) {
 
-        $scope.ageSlider = {
-            value: 22,
-            options: {
-                floor: 14,
-                ceil: 70,
-                step: 1,
-                hidePointerLabels: true,
-                hideLimitLabels: true,
-                showSelectionBar: true
-            }
-        };
+        $localStorage.gender = 'male';
 
-        $scope.heightSlider = {
-            value: 176,
-            options: {
-                floor: 140,
-                ceil: 220,
-                step: 1,
-                hidePointerLabels: true,
-                hideLimitLabels: true,
-                showSelectionBar: true
-            }
-        };
+        $scope.labels = '';
+        $scope.headerText = '';
+
+        LanguageService.SetLanguage().then(function (data) {
+            $localStorage.content = LanguageService.content;
+            $scope.labels = $localStorage.content.labels;
+            $scope.headerText = $localStorage.content.homePage.maleBox;
+        });
+
+        $scope.ageSlider = CalculatorService.ageSlider;
+        $scope.heightSlider = CalculatorService.heightSlider;
+        $scope.hairLength = 'long';
+        $scope.hairColor = 'blonde';
+        $scope.eyeColor = 'blue';
+        $scope.beard = 'a';
+        $scope.bodyType = 'normal';
+
+
+        $scope.CalculateScore = function() {
+
+            var male = {
+                gender: $localStorage.gender,
+                age: $scope.ageSlider.value,
+                height: $scope.heightSlider.value,
+                hairLength: $scope.hairLength,
+                hairColor: $scope.hairColor,
+                eyeColor: $scope.eyeColor,
+                beard: $scope.beard,
+                bodyType: $scope.bodyType
+            };
+
+            CalculatorService.CalculateScore(male);
+
+            $state.go('result', {language: $localStorage.language});
+
+        }
+
+        $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+            $localStorage.previousState = from;
+        });
 
     }
 })();

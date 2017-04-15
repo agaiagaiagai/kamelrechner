@@ -3,18 +3,20 @@
   .box {
 
     &.hairlength-box {
-      height: 175px;
+      height: 17vw;
+      max-height: 160px;
     }
 
     &.boobsize-box {
-      height: 150px;
+      height: 14vw;
+      max-height: 140px;
 
       .radio-with-image.small {
 
         label {
 
           img {
-            margin-top: -5px;
+            margin-top: 5px;
           }
         }
 
@@ -23,7 +25,7 @@
           label {
 
             img {
-              margin-top: -15px;
+              margin-top: 0px;
             }
           }
         }
@@ -33,5 +35,6 @@
 
   .button {
     margin-top: 25px;
+    margin-bottom: 50px;
   }
 }

@@ -1,0 +1,236 @@
+@media (max-width: 700px) {
+
+  .container {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .box {
+    height: auto;
+
+    > div {
+      height: 100%;
+      min-height: 50px;
+      overflow: visible;
+    }
+
+    .left-box {
+      display: block;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .right-box {
+      display: block;
+      width: 100%;
+    }
+
+    .radio-with-image {
+
+      &:hover {
+
+        img {
+          width: 55%;
+        }
+      }
+
+      &.flat {
+        margin-top: 0;
+        height: 28px;
+      }
+    }
+
+    &.age-box, &.height-box {
+
+      .right-box {
+        position: relative;
+        bottom: 20px;
+      }
+    }
+
+    &.eyecolor-box {
+
+      .left-box {
+        margin-bottom: 0;
+        position: relative;
+        top: 5px;
+      }
+
+      .right-box {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  .female {
+
+     .box {
+
+       &.hairlength-box, &.boobsize-box {
+         height: auto;
+         max-height: initial;
+
+         .left-box {
+           margin-bottom: 0;
+         }
+
+         .right-box {
+           margin-bottom: 15px;
+         }
+       }
+
+       &.boobsize-box {
+
+         .radio-with-image.small {
+
+           &:hover {
+
+             label {
+
+               img {
+                 margin-top: 5px;
+               }
+             }
+           }
+         }
+       }
+     }
+   }
+
+  .male {
+
+    .box {
+
+      &.bodytype-box, &.beard-box {
+        height: auto;
+        max-height: initial;
+
+        .left-box {
+          margin-bottom: 0;
+        }
+
+        .right-box {
+          margin-bottom: 15px;
+        }
+      }
+
+      &.beard-box {
+
+        .radio-with-image.small {
+
+          &:hover {
+
+            label {
+
+              img {
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .result {
+
+    .share-box {
+      width: 280px;
+      margin: auto;
+    }
+
+    button {
+      margin-bottom: 15px;
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  //Header
+
+  header {
+    height: 100px;
+
+    .logo {
+      width: 80px;
+      margin-top: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      max-width: 50%;
+      margin-top: 20px;
+    }
+  }
+
+  //Home page
+
+  .home {
+
+    .select-box {
+      width: 100%;
+      margin-bottom: 20px;
+
+      .select {
+
+        .image {
+          display: inline-block;
+          margin-right: 15px;
+          border: none;
+          width: 30%;
+          vertical-align: middle;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        h2 {
+          display: inline-block;
+          width: calc(70% - 30px);
+          font-size: $sub-heading-scaled;
+          vertical-align: middle;
+          padding: 5px;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+
+  //Header
+
+  header {
+
+    .logo {
+      width: 70px !important;
+    }
+
+    h1 {
+      font-size: 20px !important;
+      width: 65% !important;
+      margin-top: 35px !important;
+      max-width: initial !important;
+    }
+  }
+
+  .box {
+
+    .inline-radio {
+      margin-right: 0;
+      width: 25%;
+      float: left;
+
+      &:last-child {
+        position: relative;
+        left: 10px;
+      }
+    }
+  }
+}

@@ -1,109 +1,109 @@
-<kr-header text="Wie viele Kamele ist deine Freundin wert?"></kr-header>
+<kr-header text="{{headerText}}"></kr-header>
 <section class="main">
     <div class="container">
         <div class="row box age-box">
-            <div class="col-md-4">
-                <h3>Alter <span>{{ageSlider.value}}</span></h3>
+            <div class="col-xs-4 left-box">
+                <h3>{{labels.age}} <span>{{ageSlider.value}}</span></h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8 right-box">
                 <rzslider rz-slider-model="ageSlider.value" rz-slider-options="ageSlider.options"></rzslider>
             </div>
         </div>
         <div class="row box height-box">
-            <div class="col-md-4">
-                <h3>Größe(cm) <span>{{heightSlider.value}}</span></h3>
+            <div class="col-xs-4 left-box">
+                <h3>{{labels.height}} <span>{{heightSlider.value}}</span></h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8 right-box">
                 <rzslider rz-slider-model="heightSlider.value" rz-slider-options="heightSlider.options"></rzslider>
             </div>
         </div>
         <div class="row box haircolor-box">
-            <div class="col-md-4">
-                <h3>Haarfarbe</h3>
+            <div class="col-xs-4 left-box">
+                <h3>{{labels.hairColor.main}}</h3>
             </div>
-            <div class="col-md-8">
-                <select name="haircolor" class="form-control" ng-model="hairColor" ng-init="hairColor = 'blonde'">
-                    <option value="blonde">blonde</option>
-                    <option value="brown">braun</option>
-                    <option value="black">schwarz</option>
-                    <option value="red">rot</option>
-                    <option value="grey">grau</option>
+            <div class="col-xs-8 right-box">
+                <select name="hairColor" class="form-control" ng-model="hairColor" ng-init="hairColor === 'blonde'">
+                    <option value="blonde">{{labels.hairColor.blonde}}</option>
+                    <option value="brown">{{labels.hairColor.brown}}</option>
+                    <option value="black">{{labels.hairColor.black}}</option>
+                    <option value="red">{{labels.hairColor.red}}</option>
+                    <option value="grey">{{labels.hairColor.gray}}</option>
                 </select>
             </div>
         </div>
         <div class="row box hairlength-box">
-            <div class="col-md-4">
-                <h3>Haarlänge</h3>
+            <div class="col-xs-4 left-box">
+                <h3>{{labels.hairLength.main}}</h3>
             </div>
-            <div class="col-md-8" ng-init="hair = 'long'">
+            <div class="col-xs-8 right-box" ng-init="hairLength = 'long'">
                 <div class="radio-with-image">
-                    <input type="radio" name="hair" id="long" value="long" ng-model="hair">
+                    <input type="radio" name="hairLength" id="long" value="long" ng-model="hairLength">
                     <label for="long">
                         <img src="/assets/img/female/woman-long-hair.png" alt="long hair">
                     </label>
                 </div>
                 <div class="radio-with-image">
-                    <input type="radio" name="hair" id="middle" value="middle" ng-model="hair">
+                    <input type="radio" name="hairLength" id="middle" value="middle" ng-model="hairLength">
                     <label for="middle">
                         <img src="/assets/img/female/woman-middle-hair.png" alt="middle hair">
                     </label>
                 </div>
                 <div class="radio-with-image">
-                    <input type="radio" name="hair" id="short" value="short" ng-model="hair">
+                    <input type="radio" name="hairLength" id="short" value="short" ng-model="hairLength">
                     <label for="short">
                         <img src="/assets/img/female/woman-short-hair.png" alt="short hair">
                     </label>
                 </div>
             </div>
         </div>
-        <div class="row box eyecolor-box" ng-init="eyeColor = 'blue'">
-            <div class="col-md-4">
-                <h3>Augenfarbe</h3>
+        <div class="row box eyecolor-box">
+            <div class="col-xs-4 left-box">
+                <h3>{{labels.eyeColor.main}}</h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8 right-box">
                 <label class="inline-radio">
-                    <input type="radio" name="eyecolor" value="blue" ng-model="eyeColor" ng-selected>
-                    <span class="label-text">blau</span>
+                    <input type="radio" name="eyeColor" value="blue" ng-model="eyeColor" checked>
+                    <span class="labels-text">{{labels.eyeColor.blue}}</span>
                 </label>
                 <label class="inline-radio">
-                    <input type="radio" name="eyecolor" value="green" ng-model="eyeColor">
-                    <span class="label-text">grün</span>
+                    <input type="radio" name="eyeColor" value="green" ng-model="eyeColor">
+                    <span class="labels-text">{{labels.eyeColor.green}}</span>
                 </label>
                 <label class="inline-radio">
-                    <input type="radio" name="eyecolor" value="brown" ng-model="eyeColor">
-                    <span class="label-text">braun</span>
+                    <input type="radio" name="eyeColor" value="brown" ng-model="eyeColor">
+                    <span class="labels-text">{{labels.eyeColor.brown}}</span>
                 </label>
                 <label class="inline-radio">
-                    <input type="radio" name="eyecolor" value="gray" ng-model="eyeColor">
-                    <span class="label-text">grau</span>
+                    <input type="radio" name="eyeColor" value="gray" ng-model="eyeColor">
+                    <span class="labels-text">{{labels.eyeColor.gray}}</span>
                 </label>
             </div>
         </div>
-        <div class="row box boobsize-box" ng-init="boobs = 'a'">
-            <div class="col-md-4">
-                <h3>Körbchengröße</h3>
+        <div class="row box boobsize-box" ng-init="boobSize = 'a'">
+            <div class="col-xs-4 left-box">
+                <h3>{{labels.boobSize}}</h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8 right-box">
                 <div class="radio-with-image small">
-                    <input type="radio" name="boobs" id="boobsA" value="a" ng-model="boobs" ng-selected>
+                    <input type="radio" name="boobSize" id="boobsA" value="a" ng-model="boobSize" ng-selected>
                     <label for="boobsA">
                         <img src="/assets/img/female/boobs-a.png" alt="boobs a">
                     </label>
                 </div>
                 <div class="radio-with-image small">
-                    <input type="radio" name="boobs" id="boobsB" value="b" ng-model="boobs">
+                    <input type="radio" name="boobSize" id="boobsB" value="b" ng-model="boobSize">
                     <label for="boobsB">
                         <img src="/assets/img/female/boobs-b.png" alt="boobs b">
                     </label>
                 </div>
                 <div class="radio-with-image small">
-                    <input type="radio" name="boobs" id="boobsC" value="c" ng-model="boobs">
+                    <input type="radio" name="boobSize" id="boobsC" value="c" ng-model="boobSize">
                     <label for="boobsC">
                         <img src="/assets/img/female/boobs-c.png" alt="boobs c">
                     </label>
                 </div>
                 <div class="radio-with-image small">
-                    <input type="radio" name="boobs" id="boobsD" value="d" ng-model="boobs">
+                    <input type="radio" name="boobSize" id="boobsD" value="d" ng-model="boobSize">
                     <label for="boobsD">
                         <img src="/assets/img/female/boobs-d.png" alt="boobs d">
                     </label>
@@ -111,21 +111,21 @@
             </div>
         </div>
         <div class="row box bodytype-box">
-            <div class="col-md-4">
-                <h3>Figur</h3>
+            <div class="col-xs-4 left-box">
+                <h3>{{labels.bodyType.mainFemale}}</h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8 right-box">
                 <select name="bodytype" class="form-control" ng-model="bodyType" ng-init="bodyType = 'thin'">
-                    <option value="thin">mager</option>
-                    <option value="sporty">sportlich</option>
-                    <option value="normal">normal</option>
-                    <option value="chubby">mollig</option>
-                    <option value="fat">dick</option>
+                    <option value="thin">{{labels.bodyType.thin}}</option>
+                    <option value="sporty">{{labels.bodyType.sporty}}</option>
+                    <option value="normal">{{labels.bodyType.normal}}</option>
+                    <option value="chubby">{{labels.bodyType.chubby}}</option>
+                    <option value="fat">{{labels.bodyType.fat}}</option>
                 </select>
             </div>
         </div>
         <div class="text-center">
-            <button class="button" ng-click="CalculateWorth()">BERECHNEN</button>
+            <button class="button" ng-click="CalculateScore()">{{labels.calculate}}</button>
         </div>
     </div>
 </section>
