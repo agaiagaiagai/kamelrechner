@@ -63996,9 +63996,13 @@ angular.module('kamelrechner')
                     var currentPage = $state.current.name;
 
                     scope.activateLanguage = function(lang) {
-                        $state.go(currentPage, {language: lang});
+                        if(currentPage === 'result'){
+                            $state.go('home', {language: lang});
+                        }
+                        else {
+                            $state.go(currentPage, {language: lang});
+                        }
                     };
-
                 }
             }
         })
@@ -64568,13 +64572,11 @@ angular.module('kamelrechner')
 (function () {
     'use strict';
 
-    angular.module('kamelrechner').controller('ResultController', ["$scope", "$localStorage", "$state", "CalculatorService", ResultController]);
+    angular.module('kamelrechner').controller('ResultController', ["$scope", "$localStorage", "$state", "CalculatorService", "LanguageService", ResultController]);
 
-    function ResultController($scope, $localStorage, $state, CalculatorService) {
+    function ResultController($scope, $localStorage, $state, CalculatorService, LanguageService) {
 
-        var labels = $localStorage.content.labels;
-
-        console.log($localStorage.previousState);
+        var labels = $localStorage.content.labels;;
 
         $scope.headerText = '';
         $scope.overscore = '';
@@ -64584,7 +64586,7 @@ angular.module('kamelrechner')
         $scope.whatsapp = labels.whatsapp;
         $scope.recalculate = labels.recalculate;
 
-        if($localStorage.previousState.name === 'female'){
+        if($localStorage.gender === 'female'){
             $scope.headerText = $localStorage.content.homePage.femaleBox;
             $scope.overscore =  labels.overscore.female;
         }

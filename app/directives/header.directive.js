@@ -15,9 +15,13 @@
                     var currentPage = $state.current.name;
 
                     scope.activateLanguage = function(lang) {
-                        $state.go(currentPage, {language: lang});
+                        if(currentPage === 'result'){
+                            $state.go('home', {language: lang});
+                        }
+                        else {
+                            $state.go(currentPage, {language: lang});
+                        }
                     };
-
                 }
             }
         })
