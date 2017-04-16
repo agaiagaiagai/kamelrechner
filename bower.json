@@ -26,6 +26,7 @@
     "angular-sanitize": "1.5.8",
     "bootstrap": "3.3.7",
     "animate.css": "^3.5.2",
-    "angularjs-slider": "^6.1.1"
+    "angularjs-slider": "^6.1.1",
+    "jquery-animateNumber": "^0.0.14"
   }
 }

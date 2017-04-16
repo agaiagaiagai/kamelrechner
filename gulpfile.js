@@ -48,6 +48,7 @@ gulp.task('js', function () {
         'bower_components/angular-sanitize/angular-sanitize.js',
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angularjs-slider/dist/rzslider.js',
+        'bower_components/jquery-animateNumber/jquery.animateNumber.js',
         'app/app.config.js',
         'app/app.states.js',
         'app/directives/*.js',
